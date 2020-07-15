@@ -56,4 +56,22 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { findAll, findOne, create, update };
+const remove = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const data = await TransactionModel.findByIdAndDelete({ _id: id }).exec();
+
+    if (data.length < 1) {
+      res
+        .status(404)
+        .send({ message: "Nenhuma transacao encontrada para exclusao" });
+    } else {
+      res.send({ message: "Transacao excluida com sucesso" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { findAll, findOne, create, update, remove };

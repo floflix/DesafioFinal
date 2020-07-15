@@ -6,5 +6,6 @@ transactionRouter.get("/", controller.findAll);
 transactionRouter.get("/:id", controller.findOne);
 transactionRouter.post("/", controller.create);
 transactionRouter.put("/:id", controller.update);
+transactionRouter.delete("/:id", controller.remove);
 
 module.exports = transactionRouter;
